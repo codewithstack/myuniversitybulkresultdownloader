@@ -1,0 +1,14 @@
+# Local test only. For n8n Cloud, deploy this folder to a public host (see README).
+services:
+  result-worker:
+    build: .
+    container_name: result-worker
+    restart: unless-stopped
+    shm_size: 1gb
+    ports:
+      - "3000:3000"
+    environment:
+      API_KEY: "change-me-to-a-long-random-string"
+      OUTPUT_DIR: /data/results
+    volumes:
+      - ./results:/data/results
